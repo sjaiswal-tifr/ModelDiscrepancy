@@ -6,13 +6,6 @@ import numpy as np
 from joblib import Parallel, delayed
 import time
 import logging
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
 logger = logging.getLogger(__name__)
 
 # ----------------------------------------------------------------------------------
@@ -65,10 +58,12 @@ def realization_model(MDclass, batch_samples, n_realizations):
     - realizations_flat: numpy array of shape (batch_size * n_realizations, num_observables)
     """
 
+    num_model_param = MDclass.num_model_parameters
     all_realization = []
     
-    for theta in batch_samples:
-        theta = np.atleast_1d(theta) # theta is a 1-D array of shape (num_model_parameters,)
+    for thetaphi in batch_samples:
+        theta = np.atleast_1d(thetaphi[:num_model_param])  # theta is a 1-D array of shape (num_model_parameters,)
+        # theta = np.atleast_1d(theta) # theta is a 1-D array of shape (num_model_parameters,)
         model_mean, model_std = MDclass.model_predict(theta) # both are 1-D arrays of length total_observations
 
         # now draw n_draws samples from N(model_mean, model_std^2):
@@ -117,7 +112,7 @@ def realization_modelPlusGP(MDclass, batch_samples, n_realizations):
         phi = np.atleast_1d(thetaphi[num_model_param:])
 
         model_mean, model_std = MDclass.model_predict(theta)
-
+        
         # Indices for slicing
         obs_start = 0
         phi_start = 0
@@ -216,8 +211,6 @@ def quantiles(samples, MDclass, save_filename, whichmodel, n_realizations=100, n
 
     start_time = time.time()
 
-    logger.info("Computing quantiles for model + GP...")
-
     num_cores = set_njobs(ncores)
     
     batch_size = int(np.ceil(len(samples)/num_cores))
@@ -225,20 +218,22 @@ def quantiles(samples, MDclass, save_filename, whichmodel, n_realizations=100, n
     # Split samples into batches
     batches = [samples[i:i + batch_size] for i in range(0, len(samples), batch_size)]
     
-    logger.info(f"Total samples: {len(samples)}. Total cores: {num_cores}. Batch size: {batch_size}. Total batches: {len(batches)}")
-    
     # Parallel processing of batches
     if whichmodel == 'modelPlusGP':
-        results = Parallel(n_jobs=ncores)(
+        logger.info("Computing quantiles for model + GP predictions...")
+        logger.info(f"Total samples: {len(samples)}. Total cores: {num_cores}. Batch size: {batch_size}. Total batches: {len(batches)}")
+        results = Parallel(n_jobs=ncores, prefer="threads")(
             delayed(realization_modelPlusGP)(MDclass, batch, n_realizations) for batch in batches
         )
     elif whichmodel == 'model':
-        results = Parallel(n_jobs=ncores)(
+        logger.info("Computing quantiles for model predictions...")
+        logger.info(f"Total samples: {len(samples)}. Total cores: {num_cores}. Batch size: {batch_size}. Total batches: {len(batches)}")
+        results = Parallel(n_jobs=ncores, prefer="threads")(
             delayed(realization_model)(MDclass, batch, n_realizations) for batch in batches
         )
     else:
         raise ValueError("During quantile computation: 'whichmodel' must be 'modelPlusGP' or 'model'.")
-    
+        
     # Concatenate all realizations
     all_realizations = np.vstack(results)  # Shape: (total_samples * n_realizations, num_observables)
     logger.info(f"All realizations shape: {all_realizations.shape}")
@@ -249,7 +244,7 @@ def quantiles(samples, MDclass, save_filename, whichmodel, n_realizations=100, n
     end_time = time.time()
 
     header_str =  "# Quantiles: " + ", ".join(str(q) for q in quantiles)
-    np.savetxt(save_filename, quantiles_values, header=header_str)
+    np.savetxt(save_filename, quantiles_values, header=header_str, fmt="%.8f")
 
     logger.info(f"Time taken: {end_time - start_time:.2f} seconds. Quantiles saved in {save_filename}\n")
 
