@@ -15,15 +15,7 @@ from multiprocess import Pool
 from scipy.stats import uniform
 import time
 import logging
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
 logger = logging.getLogger(__name__)
-
 
 # ================================ pocoMC sampler ==================================
 def pocomc_sampling(min_param, max_param, log_posterior, samples_save_dir = "pocomc",
@@ -293,5 +285,3 @@ if __name__ == "__main__":
     # This block will only run when the script is executed directly.
     # You can add test calls to pocomc_sampling or other methods here.
     pass
-
-
