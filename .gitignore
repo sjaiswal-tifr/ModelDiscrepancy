@@ -6,7 +6,7 @@
 *.state
 
 emulator_train/
-Grad_*/
+#Grad_*/
 *.key
 *.log
 
