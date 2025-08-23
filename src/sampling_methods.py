@@ -175,7 +175,7 @@ def emcee_sampling(min_param, max_param, log_posterior,
     """
     if len(min_param) != len(max_param):
             raise ValueError(
-                f"min_param and max_param must have the same length."
+                "min_param and max_param must have the same length."
             )
 
     ndim = len(min_param)  # number of parameters in the model
@@ -235,7 +235,7 @@ def zeus_sampling(min_param, max_param, log_posterior,
     
     if len(min_param) != len(max_param):
             raise ValueError(
-                f"min_param and max_param must have the same length."
+                "min_param and max_param must have the same length."
             )
 
     ndim = len(min_param)  # number of parameters in the model

@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 
-# import sys, os
 import seaborn as sns
 import numpy as np
 import pandas as pd
 from scipy.stats import gaussian_kde
-# from scipy.stats import beta
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-# from matplotlib.lines import Line2D
 
 # ============================================================================================
 

@@ -1,3 +1,15 @@
+.DS_Store
+*__pycache__
+*.ipynb_checkpoints
+*.o
+
+*.state
+
+emulator_train/
+Grad_*/
+*.key
+*.log
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

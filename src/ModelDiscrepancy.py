@@ -15,6 +15,7 @@ from sklearn.preprocessing import StandardScaler
 from scipy.spatial.distance import mahalanobis
 import logging
 logger = logging.getLogger(__name__)
+
 # ===================================================================
 
 class ModelDiscrepancy():

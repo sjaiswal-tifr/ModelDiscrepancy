@@ -5,6 +5,7 @@ import psutil
 import numpy as np
 from joblib import Parallel, delayed
 import time
+import warnings
 import logging
 logger = logging.getLogger(__name__)
 
@@ -43,7 +44,7 @@ def set_njobs(ncores):
 
 # --------------------------------------------------------------------------------------------
 
-def realization_model(MDclass, batch_samples, n_realizations):
+def realization_model(MDclass, emulator, batch_samples, n_realizations):
     """
     Processes batch of MCMC samples and generate n_realizations of model predictions
       Note: model prediction is gaussian for each sample.
@@ -58,13 +59,14 @@ def realization_model(MDclass, batch_samples, n_realizations):
     - realizations_flat: numpy array of shape (batch_size * n_realizations, num_observables)
     """
 
-    num_model_param = MDclass.num_model_parameters
     all_realization = []
     
-    for thetaphi in batch_samples:
-        theta = np.atleast_1d(thetaphi[:num_model_param])  # theta is a 1-D array of shape (num_model_parameters,)
-        # theta = np.atleast_1d(theta) # theta is a 1-D array of shape (num_model_parameters,)
-        model_mean, model_std = MDclass.model_predict(theta) # both are 1-D arrays of length total_observations
+    for theta in batch_samples:
+
+        theta = theta.reshape(1, -1)  # Ensure correct shape
+        model_mean, model_std = emulator.predict(theta)
+        model_mean = np.asarray(model_mean).reshape(-1)
+        model_std  = np.asarray(model_std).reshape(-1)
 
         # now draw n_draws samples from N(model_mean, model_std^2):
         # result has shape (n_realizations, total_observations)
@@ -83,7 +85,7 @@ def realization_model(MDclass, batch_samples, n_realizations):
 
 # ----------------------------------------------------------------------------------
 
-def realization_modelPlusGP(MDclass, batch_samples, n_realizations):
+def realization_modelPlusGP(MDclass, emulator, batch_samples, n_realizations):
     """
     Processes batch of MCMC samples and generate n_realizations from posteror predictive distribution (PPD).
       Note: model + GP prediction is gaussian for each sample. 
@@ -98,21 +100,27 @@ def realization_modelPlusGP(MDclass, batch_samples, n_realizations):
     - realizations_flat: numpy array of shape (batch_size * n_realizations, num_observables)
     """
     
-    num_model_param = MDclass.num_model_parameters
+    # num_model_param = MDclass.num_model_parameters
     MD_hp_counts = MDclass.MD_hp_counts
     num_observables = MDclass.num_observables
     scaled_exp_data = MDclass.scaled_exp_data
     MD_kernels = MDclass.MD_kernels
 
+    tot_param = batch_samples.shape[1]           # total parameters (model + GP)
+    num_hp = np.sum(MD_hp_counts)                # total GP hyper parameters
+    num_model_param =  tot_param - num_hp        # total number of model parameters required by emulator
+    
     # List for storing all unscaled realizations for all samples
     unscaled_realization_all = []
     
     for thetaphi in batch_samples:
-        theta = np.atleast_1d(thetaphi[:num_model_param])
+        theta = thetaphi[:num_model_param].reshape(1, -1)  # Ensure correct shape
         phi = np.atleast_1d(thetaphi[num_model_param:])
 
-        model_mean, model_std = MDclass.model_predict(theta)
-        
+        model_mean, model_std = emulator.predict(theta)
+        model_mean = np.asarray(model_mean).reshape(-1)
+        model_std  = np.asarray(model_std).reshape(-1)
+
         # Indices for slicing
         obs_start = 0
         phi_start = 0
@@ -191,7 +199,7 @@ def realization_modelPlusGP(MDclass, batch_samples, n_realizations):
 
 # ----------------------------------------------------------------------------------
 
-def quantiles(samples, MDclass, save_filename, whichmodel, n_realizations=100, ncores=-1, quantiles=[50, 2.5, 97.5, 16, 84]):
+def quantiles(samples, MDclass, emulator, save_filename, whichmodel, n_realizations=100, ncores=-1, quantiles=[50, 2.5, 97.5, 16, 84]):
     """
     Computes quantiles for the given samples by generating realizations in parallel. 
     Quantiles are computed only at experimental data locations.
@@ -222,14 +230,14 @@ def quantiles(samples, MDclass, save_filename, whichmodel, n_realizations=100, n
     if whichmodel == 'modelPlusGP':
         logger.info("Computing quantiles for model + GP predictions...")
         logger.info(f"Total samples: {len(samples)}. Total cores: {num_cores}. Batch size: {batch_size}. Total batches: {len(batches)}")
-        results = Parallel(n_jobs=ncores, prefer="threads")(
-            delayed(realization_modelPlusGP)(MDclass, batch, n_realizations) for batch in batches
+        results = Parallel(n_jobs=num_cores)(
+            delayed(realization_modelPlusGP)(MDclass, emulator, batch, n_realizations) for batch in batches
         )
     elif whichmodel == 'model':
         logger.info("Computing quantiles for model predictions...")
         logger.info(f"Total samples: {len(samples)}. Total cores: {num_cores}. Batch size: {batch_size}. Total batches: {len(batches)}")
-        results = Parallel(n_jobs=ncores, prefer="threads")(
-            delayed(realization_model)(MDclass, batch, n_realizations) for batch in batches
+        results = Parallel(n_jobs=num_cores)(
+            delayed(realization_model)(MDclass, emulator, batch, n_realizations) for batch in batches
         )
     else:
         raise ValueError("During quantile computation: 'whichmodel' must be 'modelPlusGP' or 'model'.")
