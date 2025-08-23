@@ -211,13 +211,11 @@ def pocomc_sampling_woMD(dir_name,
     
     save_dir = f"{RunDataDir}/{dir_name}/wo_MD"
 
-    # samples = pocomc(min_param, max_param, 
-    #                  log_posterior = md.log_posterior, samples_save_dir = save_dir,
-    #                  n_effective = n_effective, n_active = n_active, 
-    #                  n_steps = n_steps, n_total = n_total, n_evidence = n_evidence, 
-    #                  save_every_n = save_every_n, resume = resume, ncores = ncores)
-
-    samples = np.load(f'{save_dir}/pocomc_chain_{n_total}.npy')
+    samples = pocomc(min_param, max_param, 
+                     log_posterior = md.log_posterior, samples_save_dir = save_dir,
+                     n_effective = n_effective, n_active = n_active, 
+                     n_steps = n_steps, n_total = n_total, n_evidence = n_evidence, 
+                     save_every_n = save_every_n, resume = resume, ncores = ncores)
 
     return samples, md
 
@@ -277,13 +275,11 @@ def pocomc_sampling_wMD_kernel1(dir_name,
     
     save_dir = f"{RunDataDir}/{dir_name}/w_MD_kernel1"
     
-    # samples = pocomc(min_param, max_param, 
-    #                  log_posterior = md.log_posterior, samples_save_dir = save_dir,
-    #                  n_effective = n_effective, n_active = n_active, 
-    #                  n_steps = n_steps, n_total = n_total, n_evidence = n_evidence, 
-    #                  save_every_n = save_every_n, resume = resume, ncores = ncores)
-
-    samples = np.load(f'{save_dir}/pocomc_chain_{n_total}.npy')
+    samples = pocomc(min_param, max_param, 
+                     log_posterior = md.log_posterior, samples_save_dir = save_dir,
+                     n_effective = n_effective, n_active = n_active, 
+                     n_steps = n_steps, n_total = n_total, n_evidence = n_evidence, 
+                     save_every_n = save_every_n, resume = resume, ncores = ncores)
 
     return samples, md
 
@@ -344,13 +340,11 @@ def pocomc_sampling_wMD_kernel2(dir_name,
     
     save_dir = f"{RunDataDir}/{dir_name}/w_MD_kernel2"
     
-    # samples = pocomc(min_param, max_param, 
-    #                  log_posterior = md.log_posterior, samples_save_dir = save_dir,
-    #                  n_effective = n_effective, n_active = n_active, 
-    #                  n_steps = n_steps, n_total = n_total, n_evidence = n_evidence, 
-    #                  save_every_n = save_every_n, resume = resume, ncores = ncores)
-
-    samples = np.load(f'{save_dir}/pocomc_chain_{n_total}.npy')
+    samples = pocomc(min_param, max_param, 
+                     log_posterior = md.log_posterior, samples_save_dir = save_dir,
+                     n_effective = n_effective, n_active = n_active, 
+                     n_steps = n_steps, n_total = n_total, n_evidence = n_evidence, 
+                     save_every_n = save_every_n, resume = resume, ncores = ncores)
 
     return samples, md
 
