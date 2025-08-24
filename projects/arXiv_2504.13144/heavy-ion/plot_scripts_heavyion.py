@@ -297,3 +297,148 @@ def plot_obs_modelPlusGP(exp_data, emu, quantiles1, quantiles2, quantiles3, true
     plt.show()
 
 # ======================================================================================
+
+def plot_etabys(samples1, samples2, samples3, eta_over_s, true_param, model_param_bounds, colors, fig_name=None):
+    
+    T_temp = np.linspace(0.14, 0.242, num=100)
+
+    # For samples1
+    results1 = np.array([[eta_over_s(T, param) for T in T_temp] for param in samples1])
+    # For samples2
+    results2 = np.array([[eta_over_s(T, param) for T in T_temp] for param in samples2])
+    # For samples3
+    results3 = np.array([[eta_over_s(T, param) for T in T_temp] for param in samples3])
+
+    # Calculate mean, std, and quantiles or samples 1
+    MAP1 = results1.mean(axis=0)
+    quantiles1 = np.percentile(results1, [2.5, 50, 97.5], axis=0)  # 2.5th, 50th (median), 97.5th percentiles
+    # ==========================================================
+
+    # Calculate mean, std, and quantiles for samples 2
+    MAP2 = results2.mean(axis=0)
+    quantiles2 = np.percentile(results2, [2.5, 50, 97.5], axis=0)  # 2.5th, 50th (median), 97.5th percentiles
+    # ==========================================================
+
+    # Calculate mean, std, and quantiles for samples 3
+    MAP3 = results3.mean(axis=0)
+    quantiles3 = np.percentile(results3, [2.5, 50, 97.5], axis=0)  # 2.5th, 50th (median), 97.5th percentiles
+    # ==========================================================
+
+    # =========== Prior =============================
+    # Sample parameters from flat priors
+    n_samples = 5000
+    prior_param_samples = np.random.uniform(
+        low=model_param_bounds[:, 0], 
+        high=model_param_bounds[:, 1], 
+        size=(n_samples, model_param_bounds.shape[0])
+    )
+
+    # Compute eta/s for each sample and T
+    eta_s_realizations = np.array([
+        [eta_over_s(T, param) for T in T_temp] for param in prior_param_samples
+    ])  # Shape: [n_samples, n_T]
+
+    # Compute percentiles across all realizations for each T
+    quantiles_prior = np.percentile(eta_s_realizations, [2.5, 50, 97.5], axis=0)
+    # ==========================================================
+    
+    # Plot mean, quantiles, and error bands
+    plt.figure(figsize=(5, 3.4))
+    
+    # plt.plot(T_temp, quantiles_prior[1], color='#800080', linestyle='-', lw=2, alpha=0.5)
+    
+    # Plot 95% quantile bands (2.5th to 97.5th percentile)
+    plt.fill_between(
+        T_temp,
+        quantiles_prior[0],  # 2.5th percentile
+        quantiles_prior[2],  # 97.5th percentile
+        color='#800080',
+        facecolor='none',
+        edgecolor='#800080',
+        alpha=0.5,
+        zorder=0,
+        label=r"$\mathrm{Prior:}\  95\%\ \mathrm{CI}$"
+    )
+
+    # ================ w/o MD =======================
+
+    # Plot samples1 results
+    plt.plot(T_temp, quantiles1[1], color=colors[0], linestyle='-', lw=2)
+    
+    # Plot 95% quantile bands (2.5th to 97.5th percentile)
+    plt.fill_between(
+        T_temp,
+        quantiles1[0],  # 2.5th percentile
+        quantiles1[2],  # 97.5th percentile
+        color=colors[0],
+        facecolor=colors[0],#'none',
+        edgecolor=colors[0],
+        # hatch='||',
+        alpha=0.3,
+        zorder=1,
+        label=r"$\mathrm{Posterior: w/o \ MD}$"
+    )
+
+    # ==================== w/ MD kernel I ========================
+    
+    # Plot samples2 results
+    plt.plot(T_temp, quantiles2[1], color=colors[1], linestyle='-', lw=2)
+    
+    # Plot 95% quantile bands (2.5th to 97.5th percentile)
+    plt.fill_between(
+        T_temp,
+        quantiles2[0],  # 2.5th percentile
+        quantiles2[2],  # 97.5th percentile
+        color=colors[1],
+        facecolor=colors[1], #'none', 
+        edgecolor=colors[1],
+        # hatch='\\\\',
+        alpha=.3,
+        zorder=2,
+        label=r"$\mathrm{Posterior: MD\, Kernel\, I}$"
+    )
+
+    # ==================== w/ MD kernel II ========================
+    
+    # Plot samples3 results
+    plt.plot(T_temp, quantiles3[1], color=colors[2], linestyle='-', lw=2)
+    
+    # Plot 95% quantile bands (2.5th to 97.5th percentile)
+    plt.fill_between(
+        T_temp,
+        quantiles3[0],  # 2.5th percentile
+        quantiles3[2],  # 97.5th percentile
+        color=colors[2],
+        facecolor='none',
+        edgecolor=colors[2],
+        hatch='||',
+        alpha=1,
+        zorder=3,
+        label=r"$\mathrm{Posterior: MD\, Kernel\, II}$"
+    )
+    
+    # ==================== Truth ==============================
+    true_shear = np.array([eta_over_s(T, true_param) for T in T_temp])
+    plt.plot(T_temp, true_shear, color='black', linestyle='--', 
+               label=r"$\mathrm{True\ value}$",
+               zorder=4)
+    
+    # Labels and grid
+    plt.xlabel(r'$T\ \mathrm{(GeV)}$', fontsize=15)
+    plt.ylabel(r'$\eta/s$', fontsize=17)
+    plt.tick_params(labelsize=15)
+    
+    plt.legend(fontsize=12, loc="upper left",
+              borderaxespad=.3   # padding between legend and axes
+              )
+    
+    # plt.grid(True)
+
+    if fig_name != None:
+        plt.savefig(fig_name, format="pdf", dpi=400, bbox_inches="tight")
+    
+    plt.show()
+
+# ============================================================================================
+
+
