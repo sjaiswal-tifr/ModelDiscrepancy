@@ -62,6 +62,7 @@ def main():
     
     # specify experiment ------->
     exp = "Grad_shear0p1_esw0p2"
+    # exp = "Grad_etakink0p1_Tkink0p18_ahigh1_alow-1_esw0p2"
     
     # load experimental data and specify directory name to save mcmc chains ----->
     experimental_data = np.loadtxt(f'../experimental_data/{exp}.dat')
@@ -72,10 +73,7 @@ def main():
     
     # ---------------------------------------------------
     
-    fixed_param = np.array([0.21, 0.0, 0.0])  # fix T_kink, a_low, a_high
-    ana.fixed_param = fixed_param
-    
-    num_model_param = 2  # number of model parameters
+    num_model_param = 5  # number of model parameters
     
     # ---------------------------------------------------
     
@@ -120,7 +118,7 @@ def main():
                     (ana.pocomc_sampling_wMD_kernel2, "w_MD_kernel2", False)
                 ]
         """
-        
+    
         for method, sub_dir, run in sampling_methods:
             if not run:
                 continue  # Skip methods not marked to run
@@ -134,36 +132,29 @@ def main():
                                      save_every_n=save_every_n,
                                      resume=resume
                                     )
-    
-                # Repeat fixed_param for each row in samples
-                fixed_params_repeated = np.tile(fixed_param, (samples.shape[0], 1))
-                # Concatenate the fixed parameters in front of samples1
-                samples_fixed_params = np.concatenate((fixed_params_repeated, samples), axis=1)
-    
+                
+                # Compute observable prediction quantiles 
                 mod = f'model'
                 save_quant_name = f"{RunDataDir}/{dir_name}/{sub_dir}/quantiles_{samp}_{mod}.txt"
     
-                emu_input = len(fixed_param) + num_model_param
-                quantiles(
-                    samples=samples_fixed_params[:,:emu_input],
-                    MDclass=md,
-                    emulator=emu,
-                    save_filename=save_quant_name,
-                    whichmodel=mod,
-                    n_realizations=100
-                )
+                quantiles(samples=samples[:, :num_model_param],
+                          MDclass=md,
+                          emulator=emu,
+                          save_filename=save_quant_name,
+                          whichmodel=mod,
+                          n_realizations=100
+                         )
     
                 if sub_dir != "wo_MD":
                     mod = f'modelPlusGP'
                     save_quant_name = f"{RunDataDir}/{dir_name}/{sub_dir}/quantiles_{samp}_{mod}.txt"
-                    quantiles(
-                        samples=samples_fixed_params,
-                        MDclass=md,
-                        emulator=emu,
-                        save_filename=save_quant_name,
-                        whichmodel=mod,
-                        n_realizations=100
-                    )
+                    quantiles(samples=samples,
+                              MDclass=md,
+                              emulator=emu,
+                              save_filename=save_quant_name,
+                              whichmodel=mod,
+                              n_realizations=100
+                             )
     
     # ======================================================================================
     # ======================================================================================

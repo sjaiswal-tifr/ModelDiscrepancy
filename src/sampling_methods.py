@@ -94,7 +94,7 @@ def pocomc_sampling(min_param, max_param, log_posterior, samples_save_dir = "poc
         sampler = pocomc.Sampler(prior=prior, likelihood=log_posterior,
                                  n_effective=n_effective, n_active=n_active, n_steps=n_steps,
                                  # dynamic=True, n_prior=n_prior, n_max_steps=n_max_steps,
-                                 pytorch_threads=None,  # use all availaible threads for preconditioning (really speeds up!)
+                                 pytorch_threads=None,
                                  pool=num_cores
                                  )
     
@@ -102,7 +102,7 @@ def pocomc_sampling(min_param, max_param, log_posterior, samples_save_dir = "poc
         sampler = pocomc.Sampler(prior=prior, likelihood=log_posterior,
                                  n_effective=n_effective, n_active=n_active, n_steps=n_steps,
                                  # dynamic=True, n_prior=n_prior, n_max_steps=n_max_steps,
-                                 pytorch_threads=None,  # use all availaible threads for preconditioning (really speeds up!)
+                                 pytorch_threads=None,
                                  pool=num_cores, 
                                  output_dir=f"{samples_save_dir}",  # Directory to save states
                                  output_label="pocomc_sampler"
