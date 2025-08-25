@@ -4,16 +4,17 @@ Code for https://arxiv.org/abs/2504.13144.
 
 This directory contains the numerical implementation used in the paper. It includes ready-to-plot results in the paper, and scripts to reproduce the inference from scratch.
 
-Directory layout
-    - environment.yml – conda environment (Install: conda env create -f environment.yml)
-    - ball_drop/ : ball drop problem implementation
-        - experimental_data/ : input data files
-        - mcmc_data/ : precomputed MCMC chains for quick plotting
-    - heavy-ion/ : heavy-ion problem implementation
-        - 2param_model/ : heavy-ion problem with 2 parameters 
-        - 5param_model/ : heavy-ion problem with 5 parameters 
-        - experimental_data/ : input data files
-            - mcmc_data/ : precomputed MCMC chains for quick plotting
+Directory layout:
+- environment.yml – conda environment (Install: conda env create -f environment.yml)
+- ball_drop/ : ball drop problem implementation
+  - experimental_data/ : input data files
+  - mcmc_data/ : precomputed MCMC chains for quick plotting
+- heavy-ion/ : heavy-ion problem implementation
+  - experimental_data/ : input data files
+  - 2param_model/ : heavy-ion problem with 2 parameters
+    - mcmc_data/ : precomputed MCMC chains for quick plotting
+  - 5param_model/ : heavy-ion problem with 5 parameters 
+    - mcmc_data/ : precomputed MCMC chains for quick plotting
 
         
 Requirements:
