@@ -5,16 +5,16 @@ Code for https://arxiv.org/abs/2504.13144.
 This directory contains the numerical implementation used in the paper. It includes ready-to-plot results in the paper, and scripts to reproduce the inference from scratch.
 
 Directory layout:
-- environment.yml – conda environment (Install: conda env create -f environment.yml)
+- `environment.yml`: conda environment (install with `conda env create -f environment.yml`)
 - ball_drop/ : ball drop problem implementation
   - experimental_data/ : input data files
-  - mcmc_data/ : precomputed MCMC chains for quick plotting
+  - mcmc_data/ : precomputed MCMC chains obtained after Bayesian inference
 - heavy-ion/ : heavy-ion problem implementation
   - experimental_data/ : input data files
   - 2param_model/ : heavy-ion problem with 2 parameters
-    - mcmc_data/ : precomputed MCMC chains for quick plotting
+    - mcmc_data/ : precomputed MCMC obtained after Bayesian inference
   - 5param_model/ : heavy-ion problem with 5 parameters 
-    - mcmc_data/ : precomputed MCMC chains for quick plotting
+    - mcmc_data/ : precomputed MCMC obtained after Bayesian inference
 
         
 Requirements:
@@ -23,16 +23,25 @@ Requirements:
 
 
 Quick start:
-1) Activate the environment: conda activate md
+1) Activate the environment:
+    ```bash
+    conda activate md
+    ```
    
-2) Plot precomputed results:
-   Precomputed chains are in mcmc_data/* for ball_drop, heavy-ion/2param_model, and heavy-ion/2param_model. Open and run the plotting notebooks:
+2) Plot results: Precomputed chains are in ball_drop/mcmc_data/, heavy-ion/2param_model/mcmc_data/, and heavy-ion/5param_model/mcmc_data/. Open and run the plotting notebooks:
     - ball_drop/plot_*.nb
     - heavy-ion/2param_model/plot_*.nb
     - heavy-ion/5param_model/plot_*.nb
 
-3) Run the inference from scratch:
-    - (cd ball_drop && python3 run_ball_drop.py)
-    - (cd heavy-ion/2param_model && python3 run_*.py)
-    - (cd heavy-ion/5param_model && python3 run_*.py)
-    - Plot precomputed results (Step 1)
+3) Run the inference from scratch. (this takes time -- run on a cluster). The code is parallelized to use multiple CPU cores:
+    ```bash
+    (cd ball_drop && python3 run_ball_drop.py)
+    ```
+    ```bash
+    (cd heavy-ion/2param_model && python3 run_*.py)
+    ```
+    ```bash
+    (cd heavy-ion/5param_model && python3 run_*.py)
+    ```
+
+    - Plot results (Step 2)
