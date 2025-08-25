@@ -5,7 +5,7 @@ Code for https://arxiv.org/abs/2504.13144.
 This directory contains the numerical implementation used in the paper. It includes ready-to-plot results in the paper, and scripts to reproduce the inference from scratch.
 
 **Directory layout:**
-- ../../src/ : code for doing Bayesian inference incorporating theoretical errors
+- ../../src/ : code for Bayesian inference, with or without incorporating theoretical uncertainties 
   - `ModelDiscrepancy.py` : class to compute likelihood and posteriors
   - `sampling_methods.py` : MCMC sampling functions
   - `get_quantiles.py` : functions to compute quantiles for observables using MCMC chains
