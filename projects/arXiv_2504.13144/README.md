@@ -31,7 +31,7 @@ This directory contains the numerical implementation used in the paper. It inclu
     - heavy-ion/5param_model/plot_etakink0p1_Tkink0p18_ahigh1_alow-1_esw0p2.nb
 
 3) Run the inference from scratch (this takes time -- run on a cluster). The code is parallelized to use all availabile CPU cores.
-    - For ball:
+    - For ball-drop experiment:
         ```bash
         (cd ball_drop && python3 run_ball_drop.py)
         ```
