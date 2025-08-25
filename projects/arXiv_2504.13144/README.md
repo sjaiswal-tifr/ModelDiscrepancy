@@ -5,15 +5,20 @@ Code for https://arxiv.org/abs/2504.13144.
 This directory contains the numerical implementation used in the paper. It includes ready-to-plot results in the paper, and scripts to reproduce the inference from scratch.
 
 **Directory layout:**
+- ../../src/ : code for doing Bayesian inference incorporating theoretical errors
+  - `ModelDiscrepancy.py` : class to compute likelihood and posteriors
+  - `sampling_methods.py` : MCMC sampling functions
+  - `get_quantiles.py` : functions to compute quantiles for observables using MCMC chains
+  - `plot_scripts.py` : plotting helpers (e.g., corner plots)
 - ball_drop/ : ball drop problem implementation
   - experimental_data/ : input data files
   - mcmc_data/ : precomputed MCMC chains obtained after Bayesian inference
 - heavy-ion/ : heavy-ion problem implementation
   - experimental_data/ : input data files
   - 2param_model/ : heavy-ion problem with 2 parameters
-    - mcmc_data/ : precomputed MCMC obtained after Bayesian inference
+    - mcmc_data/ : precomputed MCMC chains obtained after Bayesian inference
   - 5param_model/ : heavy-ion problem with 5 parameters 
-    - mcmc_data/ : precomputed MCMC obtained after Bayesian inference
+    - mcmc_data/ : precomputed MCMC chains obtained after Bayesian inference
 
 **Requirements:**
 - Conda (miniconda/anaconda)
