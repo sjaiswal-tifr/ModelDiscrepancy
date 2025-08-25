@@ -4,7 +4,7 @@ Code for https://arxiv.org/abs/2504.13144.
 
 This directory contains the numerical implementation used in the paper. It includes ready-to-plot results in the paper, and scripts to reproduce the inference from scratch.
 
-Directory layout:
+**Directory layout:**
 - `environment.yml`: conda environment (install with `conda env create -f environment.yml`)
 - ball_drop/ : ball drop problem implementation
   - experimental_data/ : input data files
@@ -16,25 +16,23 @@ Directory layout:
   - 5param_model/ : heavy-ion problem with 5 parameters 
     - mcmc_data/ : precomputed MCMC obtained after Bayesian inference
 
-        
-Requirements:
+**Requirements:**
     - Conda (miniconda/anaconda)
     - Python 3.11 (as pinned in environment.yml.)
 
-
-Quick start:
+**Quick start:**
 1) Activate the environment:
     ```bash
     conda activate md
     ```
-   
+
 2) Plot results: Precomputed chains are in ball_drop/mcmc_data/, heavy-ion/2param_model/mcmc_data/, and heavy-ion/5param_model/mcmc_data/. Open and run the plotting notebooks:
     - ball_drop/plot_ball_drop.nb
     - heavy-ion/2param_model/plot_shear0p1_esw0p2.nb
     - heavy-ion/5param_model/plot_shear0p1_esw0p2.nb
     - heavy-ion/5param_model/plot_etakink0p1_Tkink0p18_ahigh1_alow-1_esw0p2.nb
 
-3) Run the inference from scratch. (this takes time -- run on a cluster). The code is parallelized to use multiple CPU cores:
+3) Run the inference from scratch. (this takes time -- run on a cluster). The code is parallelized to use multiple CPU cores.
     - For ball:
     ```bash
     (cd ball_drop && python3 run_ball_drop.py)
