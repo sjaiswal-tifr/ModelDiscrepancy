@@ -1,4 +1,4 @@
-# Bayesian model-data comparison incorporating theoretical uncertainties
+## Bayesian model-data comparison incorporating theoretical uncertainties
 
 Code for https://arxiv.org/abs/2504.13144.
 
