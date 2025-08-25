@@ -23,15 +23,15 @@ Requirements:
 
 
 Quick start:
-1) Plot precomputed results:
+1) Activate the environment: conda activate md
+   
+2) Plot precomputed results:
    Precomputed chains are in mcmc_data/* for ball_drop, heavy-ion/2param_model, and heavy-ion/2param_model. Open and run the plotting notebooks:
     - ball_drop/plot_*.nb
     - heavy-ion/2param_model/plot_*.nb
     - heavy-ion/5param_model/plot_*.nb
 
-
-2) Run the inference from scratch:
-    - Activate the environment: conda activate md
+3) Run the inference from scratch:
     - (cd ball_drop && python3 run_ball_drop.py)
     - (cd heavy-ion/2param_model && python3 run_*.py)
     - (cd heavy-ion/5param_model && python3 run_*.py)
