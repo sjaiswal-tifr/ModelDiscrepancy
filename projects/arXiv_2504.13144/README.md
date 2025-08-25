@@ -5,7 +5,6 @@ Code for https://arxiv.org/abs/2504.13144.
 This directory contains the numerical implementation used in the paper. It includes ready-to-plot results in the paper, and scripts to reproduce the inference from scratch.
 
 **Directory layout:**
-- `environment.yml`: conda environment (install with `conda env create -f environment.yml`)
 - ball_drop/ : ball drop problem implementation
   - experimental_data/ : input data files
   - mcmc_data/ : precomputed MCMC chains obtained after Bayesian inference
@@ -21,10 +20,9 @@ This directory contains the numerical implementation used in the paper. It inclu
 - Python 3.11 (as pinned in environment.yml.)
 
 **Quick start:**
-1) Activate the environment:
-    ```bash
-    conda activate md
-    ```
+1) Install and activate environment:
+    - `environment.yml`: conda environment. Install with `conda env create -f environment.yml`
+    - Activate environment: `conda activate md`
 
 2) Plot results: Precomputed chains are in ball_drop/mcmc_data/, heavy-ion/2param_model/mcmc_data/, and heavy-ion/5param_model/mcmc_data/. Open and run the plotting notebooks:
     - ball_drop/plot_ball_drop.nb
