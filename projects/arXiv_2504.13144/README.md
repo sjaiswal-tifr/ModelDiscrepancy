@@ -17,8 +17,8 @@ This directory contains the numerical implementation used in the paper. It inclu
     - mcmc_data/ : precomputed MCMC obtained after Bayesian inference
 
 **Requirements:**
-    - Conda (miniconda/anaconda)
-    - Python 3.11 (as pinned in environment.yml.)
+- Conda (miniconda/anaconda)
+- Python 3.11 (as pinned in environment.yml.)
 
 **Quick start:**
 1) Activate the environment:
