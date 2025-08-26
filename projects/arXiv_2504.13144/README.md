@@ -31,20 +31,21 @@ This directory contains the numerical implementation used in the paper. It inclu
 
 2) Plot results: Precomputed chains are in `ball-drop/mcmc_data/`, `heavy-ion/2param_model/mcmc_data/`, and `heavy-ion/5param_model/mcmc_data/`. Open and run the plotting notebooks:
     - ball-drop/plot_ball_drop.nb
-    - heavy-ion/2param_model/plot_shear0p1_esw0p2.nb
-    - heavy-ion/5param_model/plot_shear0p1_esw0p2.nb
-    - heavy-ion/5param_model/plot_etakink0p1_Tkink0p18_ahigh1_alow-1_esw0p2.nb
+    - heavy-ion/2param_model/plot_shear0p1_esw0p2.ipynb
+    - heavy-ion/5param_model/plot_shear0p1_esw0p2.ipynb
+    - heavy-ion/5param_model/plot_etakink0p1_Tkink0p18_ahigh1_alow-1_esw0p2.ipynb
 
-3) Run the inference from scratch (this takes time -- run on a cluster). The code is parallelized to use all availabile CPU cores.
+3) Run the inference from scratch 
     - For ball-drop experiment:
         ```bash
         (cd ball-drop && python3 run_ball_drop.py)
         ```
-    - For heavy-ion 2 parameter model:
+    - For heavy-ion (this takes time -- run on a cluster). The code is parallelized to use all availabile CPU cores.
+      - 2 parameter model:
         ```bash
         (cd heavy-ion/2param_model && python3 run_shear0p1_esw0p2.py)
         ```
-    - For heavy-ion 5 parameter model:
+      - 5 parameter model:
         ```bash
         (cd heavy-ion/5param_model && python3 run_shear0p1_esw0p2.py)
         ```
