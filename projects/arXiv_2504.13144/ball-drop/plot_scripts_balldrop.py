@@ -199,9 +199,9 @@ def plot_obs_modelPlusGP(exp_data, truth, quantiles1, quantiles2, quantiles3, tr
         ax.plot(t_truth, model_median, color=colors[2], zorder=5)
 
         # Set axis labels and titles
-        ax.set_xlabel(r'time ($s$)', fontsize=16)
-        ax.set_ylabel(obs_labels[i], fontsize=16)
-        ax.tick_params(labelsize=16)
+        ax.set_xlabel(r'time ($s$)', fontsize=14)
+        ax.set_ylabel(obs_labels[i], fontsize=14)
+        ax.tick_params(labelsize=14)
         ax.set_xticks([0,0.5,1])
 
     axes[0].set_ylim(52.5, 60.5)
@@ -217,7 +217,7 @@ def plot_obs_modelPlusGP(exp_data, truth, quantiles1, quantiles2, quantiles3, tr
     if legend_ax_idx != None:
         axes[legend_ax_idx].cla()        # Clear any previous content
         axes[legend_ax_idx].axis('off')  # Optionally remove the axis borders/ticks.
-        axes[legend_ax_idx].legend(handles=legend_handles, loc='center', bbox_to_anchor=(.36, 0.6), frameon=False, fontsize=14)
+        axes[legend_ax_idx].legend(handles=legend_handles, loc='center', bbox_to_anchor=(.36, 0.6), frameon=False, fontsize=12)
 
     plt.tight_layout(pad=0.7)
     
