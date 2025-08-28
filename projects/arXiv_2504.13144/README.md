@@ -30,16 +30,14 @@ This directory contains the numerical implementation used in the paper. It inclu
     - Activate environment: `conda activate md`
 
 2) Plot results: Precomputed chains are in `ball-drop/mcmc_data/`, `heavy-ion/2param_model/mcmc_data/`, and `heavy-ion/5param_model/mcmc_data/`. Open and run the plotting notebooks:
-    - ball-drop/plot_ball_drop.nb
+    - ball-drop/plot_ball_drop.ipynb
     - heavy-ion/2param_model/plot_shear0p1_esw0p2.ipynb
     - heavy-ion/5param_model/plot_shear0p1_esw0p2.ipynb
     - heavy-ion/5param_model/plot_etakink0p1_Tkink0p18_ahigh1_alow-1_esw0p2.ipynb
 
 3) Run the inference from scratch 
-    - For ball-drop experiment:
-        ```bash
-        (cd ball-drop && python3 run_ball_drop.py)
-        ```
+    - For ball-drop experiment: ball-drop/run_ball_drop.ipynb
+
     - For heavy-ion (this takes time -- run on a cluster). The code is parallelized to use all availabile CPU cores.
       - 2 parameter model:
         ```bash
