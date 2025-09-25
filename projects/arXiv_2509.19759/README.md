@@ -8,7 +8,7 @@ This directory contains the numerical implementation used in the paper. It inclu
   - `sampling_methods.py` : MCMC sampling functions
   - `get_quantiles.py` : functions to compute quantiles for observables using MCMC chains
   - `plot_scripts.py` : plotting helpers (e.g., corner plots)
-- projects/arXiv_2509.xxxxx/
+- projects/arXiv_2509.19759/
   - experimental_data/ : experimental data files
   - emulators/ : trained emulators with simulation file and training method
   - mcmc_data/ : precomputed MCMC chains obtained after Bayesian inference
