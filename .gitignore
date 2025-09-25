@@ -10,6 +10,18 @@ emulator_train/
 *.key
 *.log
 
+# for MD QGP project ------------------->
+**/arXiv_2509.19759/emulator_train_test_delete_later/
+**/arXiv_2509.19759/some_files_delete_later/
+**/arXiv_2509.19759/**/plots/
+
+**/arXiv_2509.19759/**/pocomc_chain_20000.npy
+**/arXiv_2509.19759/**/pocomc_chain_30000.npy
+**/arXiv_2509.19759/**/quantiles_20000_*.txt
+**/arXiv_2509.19759/**/quantiles_30000_*.txt
+
+# -----------------------------------------------
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
