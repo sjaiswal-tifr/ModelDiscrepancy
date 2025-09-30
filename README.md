@@ -10,15 +10,19 @@ For references, please see the following paper:
 ## Overview
 
 The repository is organized as follows:
+
+```text
+.
 ├── src/
-│ ├── ModelDiscrepancy.py
-│ ├── sampling_methods.py
-│ ├── get_quantiles.py
-│ └── plot_scripts.py
+│   ├── ModelDiscrepancy.py
+│   ├── sampling_methods.py
+│   ├── get_quantiles.py
+│   └── plot_scripts.py
 ├── projects/
-│ └── [arXiv_identifier]/
+│   └── [arXiv_identifier]/
 └── environment.yml
 
+```
 
 **Directory and File Descriptions**
 
