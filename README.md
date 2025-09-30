@@ -46,7 +46,7 @@ conda activate myenv
 
 ## Cite this work
 
-Please use the following BibTeX entry to cite our work:
+Please use the following BibTeX entry to cite this work:
 
 ```bibtex
 @article{Jaiswal:2025hyp,
