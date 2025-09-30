@@ -14,7 +14,7 @@
 <!-- #region -->
 **Website:** https://github.com/sjaiswal-tifr/ModelDiscrepancy/   
 **Contact:** Sunil Jaiswal (<jaiswal.61@osu.edu>)       
-**Description:** `ModelDiscrepancy` provides a Bayesian framework for model-data comparison that accounts for theoretical uncertainties. The framework explicitly quantifies theoretical uncertainties by statistically modeling theory errors, guided by qualitative knowledge of a theory's varying reliability across the input domain.
+**Description:** `ModelDiscrepancy` provides a Bayesian framework for model-data comparison that accounts for theoretical uncertainties. The framework explicitly quantifies theoretical uncertainties by statistically modeling theory errors using Gaussian process, guided by qualitative knowledge of a theory's varying reliability across the input domain.
 
 
 ### Mandatory Policies
@@ -30,7 +30,7 @@
 | 5. | Provide a runtime API to return the current version number of the software. |N/A| None. |
 | 6. | Provide a BAND team-accessible repository. |Full| The current public repository at https://github.com/sjaiswal-tifr/ModelDiscrepancy/ will be publicly available and accessible by anyone in BAND or otherwise. |
 | 7. | Must allow installing, building, and linking against an outside copy of all imported software that is externally developed and maintained .|Full| None.  |
-| 8. |  Have no hardwired print or IO statements that cannot be turned off. |Full| None.  |
+| 8. | Have no hardwired print or IO statements that cannot be turned off. |Full| None.  |
 
 
 ### Recommended Policies
@@ -39,8 +39,8 @@
 |---|------------------------|---------|----------------------------------------------------------------------------------------------------------------|
 |**R1.**| Have a public repository. | Full    | None. |
 |**R2.**| Free all system resources acquired as soon as they are no longer needed. | Full    | None. |
-|**R3.**| Provide a mechanism to export ordered list of library dependencies. | N/A    | None. |
-|**R4.**| Document versions of packages that it works with or depends upon, preferably in machine-readable form. | Full | The repository contains environment.yml file for installing the required dependencies. |
+|**R3.**| Provide a mechanism to export ordered list of library dependencies. | Full    | Dependencies availaible in `environment.yml` file. |
+|**R4.**| Document versions of packages that it works with or depends upon, preferably in machine-readable form. | Full | The repository contains `environment.yml` file for installing the required dependencies. |
 |**R5.**| Have SUPPORT, LICENSE, and CHANGELOG files in top directory.  | Partial | Possesses LICENSE file in the top directory. |
 |**R6.**| Have sufficient documentation to support use and further development.  | Partial | Possesses docstrings in the source codes. |
 |**R7.**| Be buildable using 64-bit pointers; 32-bit is optional. | Full    | None.  |
