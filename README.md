@@ -63,6 +63,6 @@ Please use the following BibTeX entry to cite this work:
 ## Contact details
 
 Sunil Jaiswal (<jaiswal.61@osu.edu>)  
-Department of Physics
+Department of Physics  
 The Ohio State University  
 Columbus, Ohio 43210, USA 
