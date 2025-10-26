@@ -193,12 +193,14 @@ def emcee_sampling(min_param, max_param, log_posterior,
         sampler = emcee.EnsembleSampler(nwalkers,ndim,log_posterior,pool=pool)
     
         # "Burn-in" period
-        pos, prob, state = sampler.run_mcmc(starting_guesses, nburn, progress=True)
+        # pos, prob, state = sampler.run_mcmc(starting_guesses, nburn, progress=True)
+        state = sampler.run_mcmc(starting_guesses, nburn, progress=True)
         sampler.reset()
     
         # Sampling period
-        pos, prob, state = sampler.run_mcmc(pos, nsteps, progress=True)
-
+        # pos, prob, state = sampler.run_mcmc(pos, nsteps, progress=True)
+        state = sampler.run_mcmc(state, nsteps, progress=True)
+    
     # Collect samples
     samples = sampler.get_chain(flat=True)
     
