@@ -19,7 +19,7 @@ The repository is organized as follows:
 │   ├── get_quantiles.py
 │   └── plot_scripts.py
 ├── tests/
-│   └── test_samplers.py
+│   ├── test_samplers.py
 │   └── test_MD.py
 ├── projects/
 │   └── [arXiv_identifier]/
