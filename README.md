@@ -7,7 +7,7 @@ For references, please see the following paper:
 - Sunil Jaiswal, Chun Shen, Richard J. Furnstahl, Ulrich Heinz, Matthew T. Pratola, "Bayesian model-data comparison incorporating theoretical uncertainties", [https://arxiv.org/abs/2504.13144]
 
 
-## Overview
+## Directory and file descriptions
 
 The repository is organized as follows:
 
@@ -18,31 +18,43 @@ The repository is organized as follows:
 │   ├── sampling_methods.py
 │   ├── get_quantiles.py
 │   └── plot_scripts.py
+├── tests/
+│   └── test_samplers.py
+│   └── test_MD.py
 ├── projects/
 │   └── [arXiv_identifier]/
 └── environment.yml
 
 ```
 
-**Directory and File Descriptions**
-
 - `src/` : Contains the core Python source code for Bayesian inference methods.
   - `ModelDiscrepancy.py` : A class for computing the likelihood and posterior distributions of Bayesian models.
   - `sampling_methods.py` : A collection of functions for MCMC sampling.
   - `get_quantiles.py` : Functions to calculate quantiles from MCMC chains for various observables.
   - `plot_scripts.py` : Helper functions for generating informative plots, such as corner plots, from MCMC results.
+- `tests/` : A directory containing tests to check important components of the code.
+  - `test_samplers.py` : Tests installation of all provided MCMC samplers.
+  - `test_MD.py` : Tests installation of Model discrepancy class.
 - `projects/` : A directory for specific analysis projects. Subdirectory names are based on related arXiv paper identifiers.
 - `environment.yml` : Specifies all the necessary dependencies for setting up the project's development environment using Conda.
 
 
-**Dependencies**
+## Installation and testing
 
-To set up the required environment, use the provided `environment.yml` file with Conda.
+Set up the required environment provided in `environment.yml` file with Conda.
 
 ```sh
 conda env create -f environment.yml -n myenv
 conda activate myenv
 ```
+
+Run the following command to test important components of the code
+
+```sh
+python3 tests/test_samplers.py
+python3 tests/test_MD.py
+```
+
 
 ## Cite this work
 
@@ -55,8 +67,11 @@ Please use the following BibTeX entry to cite this work:
     eprint = "2504.13144",
     archivePrefix = "arXiv",
     primaryClass = "hep-ph",
-    month = "4",
-    year = "2025"
+    doi = {10.1016/j.physletb.2025.139946},
+    journal = {Physics Letters B},
+    volume = {870},
+    pages = {139946},
+    year = {2025}
 }
 ```
 

@@ -24,7 +24,7 @@
 | # | Policy                 | Support | Notes                                                                                                          |
 |---|------------------------|---------|----------------------------------------------------------------------------------------------------------------|
 | 1. | Support BAND community GNU Autoconf, CMake, or other build options. |Full| The source code is written in Python, so it does not need `Cmake` or `Autoconf` |
-| 2. | Have a README file in the top directory that states a specific set of testing procedures for a user to verify the software was installed and run correctly. |N/A| None. |
+| 2. | Have a README file in the top directory that states a specific set of testing procedures for a user to verify the software was installed and run correctly. |Full| None. |
 | 3. | Provide a documented, reliable way to contact the development team. |Full| The contact is <jaiswal.61@osu.edu>, given in the top-level `README.md`. |
 | 4. | Come with an open-source license |Full| Uses the MIT license.   |
 | 5. | Provide a runtime API to return the current version number of the software. |N/A| None. |
