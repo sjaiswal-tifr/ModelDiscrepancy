@@ -72,12 +72,17 @@ def main():
         samples, md = ana.pocomc_sampling(save_dir=data_dir,
                                           n_eff_mult=n_eff_mult, n_act_mult=n_act_mult, 
                                           n_steps_mult=n_steps_mult, n_total=10000,
-                                          save_every_n=100, resume=False, ncores=-1)
+                                          save_every_n=10, resume=False, ncores=-1)
 
         samples, md = ana.pocomc_sampling(save_dir=data_dir,
                                           n_eff_mult=n_eff_mult, n_act_mult=n_act_mult, 
                                           n_steps_mult=n_steps_mult, n_total=20000,
-                                          save_every_n=100, resume=True, ncores=-1)
+                                          save_every_n=10, resume=True, ncores=-1)
+        
+        samples, md = ana.pocomc_sampling(save_dir=data_dir,
+                                          n_eff_mult=n_eff_mult, n_act_mult=n_act_mult, 
+                                          n_steps_mult=n_steps_mult, n_total=40000,
+                                          save_every_n=10, resume=True, ncores=-1)
     # ======================================================================================
     
     # # fast ------------------------------->
