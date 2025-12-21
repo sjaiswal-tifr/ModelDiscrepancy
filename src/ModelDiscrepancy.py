@@ -206,7 +206,7 @@ class ModelDiscrepancy():
           - returns two 1D arrays (model_mean, model_std),
           - both arrays have length == self.total_observations.
         """
-        theta_trial = np.zeros(self.num_model_parameters, dtype=float)
+        theta_trial = np.zeros(self.num_model_parameters, dtype=float) + 1e-8
         try:
             # Check log priors can handle these trial values
             for i, prior_func in enumerate(self.log_priors_model):

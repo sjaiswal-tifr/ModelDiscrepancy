@@ -35,7 +35,7 @@ The repository is organized as follows:
 - `tests/` : A directory containing tests to check important components of the code.
   - `test_samplers.py` : Tests installation of all provided MCMC samplers.
   - `test_MD.py` : Tests installation of Model discrepancy class.
-- `projects/` : A directory for specific analysis projects. Subdirectory names are based on related arXiv paper identifiers.
+- `projects/` : A directory for specific analysis projects. Subdirectory names are based on related arXiv paper identifiers. A `README.md` file in each subdirectory contains information on the workflow.
 - `environment.yml` : Specifies all the necessary dependencies for setting up the project's development environment using Conda.
 
 
