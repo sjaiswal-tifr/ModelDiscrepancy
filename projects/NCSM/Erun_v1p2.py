@@ -119,100 +119,100 @@ def main():
     # ======================================================================================
     
     
-    # ======================================================================================
-    # Bounds: For H3_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
-    model_param_bounds = np.array([[ -11.0 , -5.0    ],   # Einf
-                                  [ 0.0    , 2000.0  ],   # A0
-                                  [ 0.01   , 5.0     ],   # A1
-                                  [ 0.0    , 10000.0 ],   # A2
-                                  [ 0.1    , 2.0     ]    # kinf
-                                  ])
+    # # ======================================================================================
+    # # Bounds: For H3_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
+    # model_param_bounds = np.array([[ -11.0 , -5.0    ],   # Einf
+    #                               [ 0.0    , 2000.0  ],   # A0
+    #                               [ 0.01   , 5.0     ],   # A1
+    #                               [ 0.0    , 10000.0 ],   # A2
+    #                               [ 0.1    , 2.0     ]    # kinf
+    #                               ])
 
-    exp = 'H3'    # Nmax: 4, 6, 8, ..., 40
-    run(exp=exp, max_Nmax=14)
-    run(exp=exp, max_Nmax=18)
-    run(exp=exp, max_Nmax=40)
-    # ======================================================================================  
+    # exp = 'H3'    # Nmax: 4, 6, 8, ..., 40
+    # run(exp=exp, max_Nmax=14)
+    # run(exp=exp, max_Nmax=18)
+    # run(exp=exp, max_Nmax=40)
+    # # ======================================================================================  
 
 
-    # ======================================================================================
-    # Bounds: For He3_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
-    model_param_bounds = np.array([[ -9.0   , -5.0   ],   # Einf
-                                  [ 0.0    , 2000.0  ],   # A0
-                                  [ 0.01   , 5.0     ],   # A1
-                                  [ 0.0    , 2000.0  ],   # A2
-                                  [ 0.1    , 2.0     ]    # kinf
-                                  ])
+    # # ======================================================================================
+    # # Bounds: For He3_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
+    # model_param_bounds = np.array([[ -9.0   , -5.0   ],   # Einf
+    #                               [ 0.0    , 2000.0  ],   # A0
+    #                               [ 0.01   , 5.0     ],   # A1
+    #                               [ 0.0    , 2000.0  ],   # A2
+    #                               [ 0.1    , 2.0     ]    # kinf
+    #                               ])
 
-    exp = 'He3'    # Nmax: 10, 12, 14, ..., 40
-    run(exp=exp, max_Nmax=14)
-    run(exp=exp, max_Nmax=18)
-    run(exp=exp, max_Nmax=40)
-    # ======================================================================================
+    # exp = 'He3'    # Nmax: 10, 12, 14, ..., 40
+    # run(exp=exp, max_Nmax=14)
+    # run(exp=exp, max_Nmax=18)
+    # run(exp=exp, max_Nmax=40)
+    # # ======================================================================================
     
     
-    # ======================================================================================
-    # Bounds: For He4_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
-    model_param_bounds = np.array([[ -30.0  , -25.0  ],   # Einf
-                                  [ 0.0    , 1000.0  ],   # A0
-                                  [ 0.01   , 5.0     ],   # A1
-                                  [ 5000.0 , 15000.0 ],   # A2
-                                  [ 0.1    , 2.0     ]    # kinf
-                                  ])
+    # # ======================================================================================
+    # # Bounds: For He4_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
+    # model_param_bounds = np.array([[ -30.0  , -25.0  ],   # Einf
+    #                               [ 0.0    , 1000.0  ],   # A0
+    #                               [ 0.01   , 5.0     ],   # A1
+    #                               [ 5000.0 , 15000.0 ],   # A2
+    #                               [ 0.1    , 2.0     ]    # kinf
+    #                               ])
 
-    exp = 'He4'    # Nmax: 4, 6, 8, ..., 20
-    run(exp=exp, max_Nmax=10)
-    run(exp=exp, max_Nmax=14)
-    run(exp=exp, max_Nmax=20)
-    # ======================================================================================
+    # exp = 'He4'    # Nmax: 4, 6, 8, ..., 20
+    # run(exp=exp, max_Nmax=10)
+    # run(exp=exp, max_Nmax=14)
+    # run(exp=exp, max_Nmax=20)
+    # # ======================================================================================
   
   
-    # ======================================================================================
-    # Bounds: For He6_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
-    model_param_bounds = np.array([[ -31.0 , -18.0   ],   # Einf
-                                  [ 0.0    , 1000.0  ],   # A0
-                                  [ 0.01   , 5.0     ],   # A1
-                                  [ 10000.0, 20000.0 ],   # A2
-                                  [ 0.1    , 2.0     ]    # kinf
-                                  ])
+    # # ======================================================================================
+    # # Bounds: For He6_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
+    # model_param_bounds = np.array([[ -31.0 , -18.0   ],   # Einf
+    #                               [ 0.0    , 1000.0  ],   # A0
+    #                               [ 0.01   , 5.0     ],   # A1
+    #                               [ 10000.0, 20000.0 ],   # A2
+    #                               [ 0.1    , 2.0     ]    # kinf
+    #                               ])
                          
-    exp = 'He6'    # Nmax: 4, 6, 8, ..., 18
-    run(exp=exp, max_Nmax=10)
-    run(exp=exp, max_Nmax=12)
-    run(exp=exp, max_Nmax=18)
-    # ====================================================================================== 
+    # exp = 'He6'    # Nmax: 4, 6, 8, ..., 18
+    # run(exp=exp, max_Nmax=10)
+    # run(exp=exp, max_Nmax=12)
+    # run(exp=exp, max_Nmax=18)
+    # # ====================================================================================== 
     
 
-    # ======================================================================================
-    # Bounds: For Li6_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
-    model_param_bounds = np.array([[ -40.0  , -22.0  ],   # Einf
-                                  [ 0.0    , 1000.0  ],   # A0
-                                  [ 0.01   , 5.0     ],   # A1
-                                  [ 8000.0 , 20000.0 ],   # A2
-                                  [ 0.1    , 2.0     ]    # kinf
-                                  ])
+    # # ======================================================================================
+    # # Bounds: For Li6_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
+    # model_param_bounds = np.array([[ -40.0  , -22.0  ],   # Einf
+    #                               [ 0.0    , 1000.0  ],   # A0
+    #                               [ 0.01   , 5.0     ],   # A1
+    #                               [ 8000.0 , 20000.0 ],   # A2
+    #                               [ 0.1    , 2.0     ]    # kinf
+    #                               ])
 
-    exp = 'Li6'    # Nmax: 4, 6, 8, ..., 22
-    run(exp=exp, max_Nmax=14)
-    run(exp=exp, max_Nmax=18)
-    run(exp=exp, max_Nmax=22)
-    # ======================================================================================
+    # exp = 'Li6'    # Nmax: 4, 6, 8, ..., 22
+    # run(exp=exp, max_Nmax=14)
+    # run(exp=exp, max_Nmax=18)
+    # run(exp=exp, max_Nmax=22)
+    # # ======================================================================================
     
     
-    # ======================================================================================
-    # Bounds: For He8_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
-    model_param_bounds = np.array([[ -34.0 , -18.0   ],   # Einf
-                                  [ 0.0    , 1000.0  ],   # A0
-                                  [ 0.01   , 50.0    ],   # A1
-                                  [ 10000.0, 30000.0 ],   # A2
-                                  [ 0.1    , 2.0     ]    # kinf
-                                  ])
+    # # ======================================================================================
+    # # Bounds: For He8_v1p2. both matern 3/2. Hypermarameter: cbar, s_Lambda, r_Lambda, l_Lambda, s_L, r_L, l_L
+    # model_param_bounds = np.array([[ -34.0 , -18.0   ],   # Einf
+    #                               [ 0.0    , 1000.0  ],   # A0
+    #                               [ 0.01   , 50.0    ],   # A1
+    #                               [ 10000.0, 30000.0 ],   # A2
+    #                               [ 0.1    , 2.0     ]    # kinf
+    #                               ])
                          
-    exp = 'He8'    # Nmax: 4, 6, 8, 10, 12
-    run(exp=exp, max_Nmax=8)
-    run(exp=exp, max_Nmax=10)
-    run(exp=exp, max_Nmax=12)
-    # ======================================================================================
+    # exp = 'He8'    # Nmax: 4, 6, 8, 10, 12
+    # run(exp=exp, max_Nmax=8)
+    # run(exp=exp, max_Nmax=10)
+    # run(exp=exp, max_Nmax=12)
+    # # ======================================================================================
 
 
 # ======================================================================================
