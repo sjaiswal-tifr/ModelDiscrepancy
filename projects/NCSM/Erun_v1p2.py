@@ -61,7 +61,7 @@ def main():
             'Energy': True
         }
         
-        data_dir = f'mcmc_data_try/{exp}_{version}/E_Nmax{max_Nmax}'
+        data_dir = f'mcmc_data_{version}/{exp}/E_Nmax{max_Nmax}'
         
         ana.experimental_data = experimental_data
         ana.observables = observables
